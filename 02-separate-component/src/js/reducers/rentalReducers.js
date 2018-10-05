@@ -1,3 +1,5 @@
+import { combineReducers } from "redux";
+
 const initialState = {
   fetching: false,
   fetched: false,
@@ -44,3 +46,8 @@ export const rentalCountByCityReducer = (state=initialState, action) => {
     }
     return state
 }
+
+export const reducers = combineReducers({
+  rentalByCityReducer,
+  rentalCountByCityReducer
+})
