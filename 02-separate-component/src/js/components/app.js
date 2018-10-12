@@ -7,7 +7,7 @@ import promise from "redux-promise-middleware";
 import thunk from "redux-thunk";
 
 import {reducers} from '../reducers/rentalReducers'
-import RentalGrid from './rentalGrid';
+import MainComponent from './mainComponent';
 
 const middleware = applyMiddleware(promise(), thunk)
 const store = createStore(reducers, middleware)
@@ -18,10 +18,10 @@ store.subscribe(() => {
 
 export class App extends Component {
   render() {
-      return (
-        <Provider store={store}>
-            <RentalGrid />
-         </Provider>
-      );
+    return (
+      <Provider store={store}>
+        <MainComponent />
+      </Provider>
+    );
   }
 }

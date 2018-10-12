@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
 import ReactTable from "react-table";
 import { connect } from "react-redux"
-import {fetchRentalsByCity, fetchRentalCountByCity} from '../actions/rentalActions'
 
-@connect((store) => {
-  return {
-    rentalsByCityData: store.rentalByCityReducer.data,
-    rentalCountByCityData: store.rentalCountByCityReducer.data
-  };
-})
-export default class RentalGrid extends Component {
-  componentWillMount() {
-    this.props.dispatch(fetchRentalsByCity())
-    this.props.dispatch(fetchRentalCountByCity())
-  }
-
+class RentalGrid extends Component {
   render() {
     const { rentalsByCityData } = this.props;
 
@@ -63,3 +51,11 @@ export default class RentalGrid extends Component {
       );
     }
 }
+
+const mapStateToProps = (state) => {
+  return{
+    rentalsByCityData: state.rentalByCityReducer.data
+  };
+};
+
+export default connect(mapStateToProps)(RentalGrid);
