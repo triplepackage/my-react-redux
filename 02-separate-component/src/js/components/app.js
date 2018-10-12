@@ -6,7 +6,7 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import promise from "redux-promise-middleware";
 import thunk from "redux-thunk";
 
-import {reducers} from '../reducers/rentals'
+import { reducers } from '../reducers/rentals'
 import MainComponent from './mainComponent';
 
 const middleware = applyMiddleware(promise(), thunk)

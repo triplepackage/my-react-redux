@@ -9,7 +9,7 @@ const initialState = {
   error: null,
 };
 
-export const rentals = (state=initialState, action) => {
+const rentals = (state=initialState, action) => {
     switch (action.type) {
       case Action.FETCH_RENTALS_BY_CITY: {
         return {...state, isRentalsByCityDataFetching: true}
