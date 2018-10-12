@@ -54,7 +54,7 @@ class RentalGrid extends Component {
 
 const mapStateToProps = (state) => {
   return{
-    rentalsByCityData: state.rentalByCityReducer.data
+    rentalsByCityData: state.rentals.rentalsByCityData
   };
 };
 

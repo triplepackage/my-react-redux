@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import {fetchRentalsByCity, fetchRentalCountByCity} from '../actions/rentalActions'
+import {fetchRentalsByCity, fetchRentalCountByCity} from '../actions/rentals'
 import RentalGrid from './rentalGrid';
 import RentalBarChart from './RentalBarChart'
 import { bindActionCreators } from 'redux';
 
 @connect((store) => {
   return {
-    rentalsByCityData: store.rentalByCityReducer.data,
-    rentalCountByCityData: store.rentalCountByCityReducer.data
+    rentalsByCityData: store.rentals.rentalsByCityData,
+    rentalCountByCityData: store.rentals.rentalCountByCityData
   };
 })
 class MainComponent extends Component {

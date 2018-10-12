@@ -38,7 +38,7 @@ class RentalBarChart extends Component {
 
 const mapStateToProps = (state) => {
   return{
-    rentalCountByCityData: state.rentalCountByCityReducer.data
+    rentalCountByCityData: state.rentals.rentalCountByCityData
   };
 };
 
