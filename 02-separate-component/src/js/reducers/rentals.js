@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import * as Action from '../actions/rentals';
 
 const initialState = {
   isRentalsByCityDataFetching: false,
@@ -10,26 +11,26 @@ const initialState = {
 
 export const rentals = (state=initialState, action) => {
     switch (action.type) {
-      case "FETCH_RENTALS_BY_CITY": {
+      case Action.FETCH_RENTALS_BY_CITY: {
         return {...state, isRentalsByCityDataFetching: true}
       }
-      case "FETCH_RENTALS_BY_CITY_REJECTED": {
+      case Action.FETCH_RENTALS_BY_CITY_REJECTED: {
         return {...state, isRentalsByCityDataFetching: false, error: action.payload}
       }
-      case "FETCH_RENTALS_BY_CITY_FULFILLED": {
+      case Action.FETCH_RENTALS_BY_CITY_FULFILLED: {
         return {
           ...state,
           isRentalsByCityDataFetching: false,
           rentalsByCityData: action.payload,
         }
       }
-      case "FETCH_RENTAL_COUNT_BY_CITY": {
+      case Action.FETCH_RENTAL_COUNT_BY_CITY: {
         return {...state, isRentalCountByCityDataFetching: true}
       }
-      case "FETCH_RENTAL_COUNT_BY_CITY_REJECTED": {
+      case Action.FETCH_RENTAL_COUNT_BY_CITY_REJECTED: {
         return {...state, isRentalCountByCityDataFetching: false, error: action.payload}
       }
-      case "FETCH_RENTAL_COUNT_BY_CITY_FULFILLED": {
+      case Action.FETCH_RENTAL_COUNT_BY_CITY_FULFILLED: {
         return {
           ...state,
           isRentalCountByCityDataFetching: false,
