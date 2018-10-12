@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import ReactTable from "react-table";
 import { connect } from "react-redux"
+import * as Action from '../actions/rentals'
 
 class RentalGrid extends Component {
+  componentWillMount() {
+    this.props.dispatch(Action.fetchRentalsByCity())
+  }
+
   render() {
     const { rentalsByCityData } = this.props;
 

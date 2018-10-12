@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import {HorizontalBar} from 'react-chartjs-2';
 import { connect } from "react-redux"
+import * as Action from '../actions/rentals'
 
 class RentalBarChart extends Component {
+  componentWillMount() {
+    this.props.dispatch(Action.fetchRentalCountByCity())
+  }
+
   render() {
     const { rentalCountByCityData } = this.props;
 
