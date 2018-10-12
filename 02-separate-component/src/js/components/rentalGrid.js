@@ -5,7 +5,7 @@ import * as Action from '../actions/rentals'
 
 class RentalGrid extends Component {
   componentWillMount() {
-    this.props.dispatch(Action.fetchRentalsByCity())
+    this.props.fetchRentalsByCity();
   }
 
   render() {
@@ -57,10 +57,18 @@ class RentalGrid extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+  return{
+    fetchRentalsByCity: () => {
+      dispatch(Action.fetchRentalsByCity())
+    }
+  };
+};
+
 const mapStateToProps = (state) => {
   return{
     rentalsByCityData: state.rentals.rentalsByCityData
   };
 };
 
-export default connect(mapStateToProps)(RentalGrid);
+export default connect(mapStateToProps, mapDispatchToProps)(RentalGrid);

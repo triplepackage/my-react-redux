@@ -5,7 +5,7 @@ import * as Action from '../actions/rentals'
 
 class RentalBarChart extends Component {
   componentWillMount() {
-    this.props.dispatch(Action.fetchRentalCountByCity())
+    this.props.fetchRentalCountByCity();
   }
 
   render() {
@@ -41,10 +41,18 @@ class RentalBarChart extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+  return{
+    fetchRentalCountByCity: () => {
+      dispatch(Action.fetchRentalCountByCity())
+    }
+  };
+};
+
 const mapStateToProps = (state) => {
   return{
     rentalCountByCityData: state.rentals.rentalCountByCityData
   };
 };
 
-export default connect(mapStateToProps)(RentalBarChart);
+export default connect(mapStateToProps, mapDispatchToProps)(RentalBarChart);
