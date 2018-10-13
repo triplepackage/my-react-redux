@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
-import { BrowserRouter as Router, NavLink, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink, Route, Switch, Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, Glyphicon, Panel } from 'react-bootstrap';
 
 import RentalGrid from './rentalGrid';
@@ -20,21 +20,20 @@ const NavLinks = () => {
            <Navbar.Brand>
              Baltimore County Rental Portal
            </Navbar.Brand>
-           <Navbar.Toggle />
          </Navbar.Header>
          <Navbar.Collapse>
            <Nav pullRight>
-             <NavItem eventKey={1}>
-               <NavLink exact to="/datagrid" className="link">Home</NavLink>
+             <NavItem componentClass={Link} href="/datagrid" to="/datagrid">
+               Home
              </NavItem>
-             <NavItem eventKey={2}>
-               <NavLink className="tags" to="/datagrid">Rental Data</NavLink>
+             <NavItem componentClass={Link} href="/datagrid" to="/datagrid">
+               Rental Data
              </NavItem>
-             <NavItem eventKey={3}>
-               <NavLink to="/barchart">Rentals by City</NavLink>
+             <NavItem componentClass={Link} href="/barchart" to="/barchart">
+               Rentals by City
              </NavItem>
-             <NavItem eventKey={4}>
-               <NavLink to="/doughnut">Rental Status</NavLink>
+             <NavItem componentClass={Link} href="/doughnut" to="/doughnut">
+               Rental Status
              </NavItem>
            </Nav>
          </Navbar.Collapse>
