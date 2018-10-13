@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import * as Action from '../actions/rentals'
 
 class RentalBarChart extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchRentalCountByCity();
   }
 

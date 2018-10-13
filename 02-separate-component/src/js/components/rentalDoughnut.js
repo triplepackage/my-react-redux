@@ -20,34 +20,32 @@ class RentalDoughnut extends Component {
     });
 
     const doughnutData = {
+      labels: chartLabel,
+      datasets: [{
+        data: chartData,
+        backgroundColor: [
+          '#FF6384',
+          '#36A2EB',
+          '#FBCC56',
+          '#FF7984',
+          '#F6B8EB',
+          '#BCEE56'
+        ],
+        hoverBackgroundColor: [
+          '#FF6384',
+          '#36A2EB',
+          '#FBCC56',
+          '#FF7984',
+          '#F6B8EB',
+          '#BCEE56'
+        ]
+      }]
+    }   
 
-                      labels: chartLabel,
-                      datasets: [{
-                        data: chartData,
-                        backgroundColor: [
-                        '#FF6384',
-                        '#36A2EB',
-                        '#FBCC56',
-                        '#FF7984',
-                        '#F6B8EB',
-                        '#BCEE56'
-                        ],
-                        hoverBackgroundColor: [
-                          '#FF6384',
-                          '#36A2EB',
-                          '#FBCC56',
-                          '#FF7984',
-                          '#F6B8EB',
-                          '#BCEE56'
-                        ]
-                      }]
-                    }
-
-
-      return (
-        <Doughnut data={doughnutData} />
-      );
-    }
+    return (
+      <Doughnut data={doughnutData} />
+    );
+  }
 }
 
 const mapDispatchToProps = dispatch => {

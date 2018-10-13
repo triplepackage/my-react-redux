@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
-import { applyMiddleware, combineReducers, createStore } from "redux";
 import { BrowserRouter as Router, NavLink, Route, Switch } from 'react-router-dom';
 import { Navbar, Nav, NavItem, Glyphicon, Panel } from 'react-bootstrap';
 
-import promise from "redux-promise-middleware";
-import thunk from "redux-thunk";
-
-import { reducers } from '../reducers/rentals'
-
 import RentalGrid from './rentalGrid';
-import RentalBarChart from './RentalBarChart'
-
-const middleware = applyMiddleware(promise(), thunk)
-const store = createStore(reducers, middleware)
+import RentalBarChart from './rentalBarChart'
+import RentalDoughnut from './rentalDoughnut'
+import store from '../store'
 
 store.subscribe(() => {
   console.log("Store changed", store.getState());
@@ -40,6 +33,9 @@ const NavLinks = () => {
              <NavItem eventKey={3}>
                <NavLink to="/barchart">Rentals by City</NavLink>
              </NavItem>
+             <NavItem eventKey={4}>
+               <NavLink to="/doughnut">Rental Status</NavLink>
+             </NavItem>
            </Nav>
          </Navbar.Collapse>
        </Navbar>
@@ -63,6 +59,7 @@ export class App extends Component {
                         <Route exact={ true } path="/" component={ RentalGrid }/>
                         <Route path="/datagrid" component={ RentalGrid }/>
                         <Route path="/barchart" component={ RentalBarChart }/>
+                        <Route path="/doughnut" component={ RentalDoughnut }/>
                         <Route render={ () => <h1>404 Error</h1> } />
                     </Switch>
                   </Panel.Body>
@@ -71,7 +68,6 @@ export class App extends Component {
           </div>
         </Router>
       </Provider>
-
     );
   }
 }

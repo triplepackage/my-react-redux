@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import * as Action from '../actions/rentals'
 
 class RentalGrid extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchRentalsByCity();
   }
 
