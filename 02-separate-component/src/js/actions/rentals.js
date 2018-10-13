@@ -9,6 +9,7 @@ export const FETCH_RENTAL_COUNT_BY_CITY_FULFILLED = "FETCH_RENTAL_COUNT_BY_CITY_
 export const FETCH_RENTAL_STATUS = "FETCH_RENTAL_STATUS";
 export const FETCH_RENTAL_STATUS_REJECTED = "FETCH_RENTAL_STATUS_REJECTED";
 export const FETCH_RENTAL_STATUS_FULFILLED = "FETCH_RENTAL_STATUS_FULFILLED";
+export const SET_CURRENT_RENTAL = "SET_CURRENT_RENTAL";
 
 export const fetchRentalsByCity = () => {
   return function(dispatch) {
@@ -49,5 +50,11 @@ export const fetchRentalStatus = () => {
       .catch((err) => {
         dispatch({type: FETCH_RENTAL_STATUS_REJECTED, payload: err})
       })
+  }
+}
+
+export const setCurrentRental = (currentRental) => {
+  return function(dispatch) {
+    dispatch({type: SET_CURRENT_RENTAL, rental: currentRental});
   }
 }

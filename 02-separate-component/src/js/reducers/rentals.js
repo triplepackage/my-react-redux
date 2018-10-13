@@ -7,6 +7,7 @@ const initialState = {
   rentalsByCityData: [],
   rentalCountByCityData: [],
   rentalStatusData: [],
+  selectedRental: {},
   error: null,
 };
 
@@ -49,6 +50,12 @@ export const rentals = (state=initialState, action) => {
           ...state,
           isRentalStatusDataFetching: false,
           rentalStatusData: action.payload,
+        }
+      }
+      case Action.SET_CURRENT_RENTAL: {
+        return {
+          ...state,
+          selectedRental: action.rental,
         }
       }
       default:

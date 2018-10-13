@@ -7,6 +7,7 @@ import { Navbar, Nav, NavItem, Glyphicon, Panel } from 'react-bootstrap';
 import RentalGrid from './rentalGrid';
 import RentalBarChart from './rentalBarChart'
 import RentalDoughnut from './rentalDoughnut'
+import RentalForm from './rentalForm'
 import store from '../store'
 
 store.subscribe(() => {
@@ -59,6 +60,7 @@ export class App extends Component {
                         <Route path="/datagrid" component={ RentalGrid }/>
                         <Route path="/barchart" component={ RentalBarChart }/>
                         <Route path="/doughnut" component={ RentalDoughnut }/>
+                        <Route path="/rental" component={ RentalForm }/>
                         <Route render={ () => <h1>404 Error</h1> } />
                     </Switch>
                   </Panel.Body>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import ReactTable from "react-table";
 import { connect } from "react-redux"
 import * as Action from '../actions/rentals'
@@ -6,6 +7,20 @@ import * as Action from '../actions/rentals'
 class RentalGrid extends Component {
   componentDidMount() {
     this.props.fetchRentalsByCity();
+  }
+
+  onRowClick = (state, rowInfo) => {
+    return {
+      onClick: e => {
+        this.props.setCurrentRental(rowInfo.original);
+
+        this.props.history.push({
+          pathname: '/rental',
+          search: '?recordId=' + rowInfo.original['recordId'],
+          state: { detail: rowInfo.original }
+        })
+      }
+    }
   }
 
   render() {
@@ -50,6 +65,7 @@ class RentalGrid extends Component {
       return (
         <ReactTable
             data={rentalsByCityData}
+            getTrProps={this.onRowClick}
             columns={columns}
             className="-striped -highlight"
           />
@@ -59,10 +75,9 @@ class RentalGrid extends Component {
 
 const mapDispatchToProps = dispatch => {
   return{
-    fetchRentalsByCity: () => {
-      dispatch(Action.fetchRentalsByCity())
-    }
-  };
+    fetchRentalsByCity: () =>  dispatch(Action.fetchRentalsByCity()),
+    setCurrentRental: (currentRental) => dispatch(Action.setCurrentRental(currentRental))
+  }
 };
 
 const mapStateToProps = (state) => {
