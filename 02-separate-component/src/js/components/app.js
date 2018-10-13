@@ -1,26 +1,71 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { BrowserRouter as Router, NavLink, Route, Switch, Link } from 'react-router-dom';
+import { Navbar, Nav, NavItem, Glyphicon, Panel } from 'react-bootstrap';
 
-import promise from "redux-promise-middleware";
-import thunk from "redux-thunk";
-
-import { reducers } from '../reducers/rentals'
-import MainComponent from './mainComponent';
-
-const middleware = applyMiddleware(promise(), thunk)
-const store = createStore(reducers, middleware)
+import RentalGrid from './rentalGrid';
+import RentalBarChart from './rentalBarChart'
+import RentalDoughnut from './rentalDoughnut'
+import store from '../store'
 
 store.subscribe(() => {
   console.log("Store changed", store.getState());
 })
 
+const NavLinks = () => {
+    return(
+      <Navbar fixedTop>
+         <Navbar.Header>
+           <Navbar.Brand>
+             Baltimore County Rental Portal
+           </Navbar.Brand>
+         </Navbar.Header>
+         <Navbar.Collapse>
+           <Nav pullRight>
+             <NavItem componentClass={Link} href="/datagrid" to="/datagrid">
+               Home
+             </NavItem>
+             <NavItem componentClass={Link} href="/datagrid" to="/datagrid">
+               Rental Data
+             </NavItem>
+             <NavItem componentClass={Link} href="/barchart" to="/barchart">
+               Rentals by City
+             </NavItem>
+             <NavItem componentClass={Link} href="/doughnut" to="/doughnut">
+               Rental Status
+             </NavItem>
+           </Nav>
+         </Navbar.Collapse>
+       </Navbar>
+    );
+}
+
 export class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <MainComponent />
+        <Router>
+            <div>
+              <div className="page-header">
+                <NavLinks />
+              </div>
+              <div className="jumbotron col-sm-10 col-sm-offset-1">
+                <Panel bsStyle="primary">
+                  <Panel.Heading>Rental Data</Panel.Heading>
+                  <Panel.Body>
+                    <Switch>
+                        <Route exact={ true } path="/" component={ RentalGrid }/>
+                        <Route path="/datagrid" component={ RentalGrid }/>
+                        <Route path="/barchart" component={ RentalBarChart }/>
+                        <Route path="/doughnut" component={ RentalDoughnut }/>
+                        <Route render={ () => <h1>404 Error</h1> } />
+                    </Switch>
+                  </Panel.Body>
+                </Panel>
+              </div>
+          </div>
+        </Router>
       </Provider>
     );
   }

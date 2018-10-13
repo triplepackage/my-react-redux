@@ -6,6 +6,9 @@ export const FETCH_RENTALS_BY_CITY_FULFILLED = "FETCH_RENTALS_BY_CITY_FULFILLED"
 export const FETCH_RENTAL_COUNT_BY_CITY = "FETCH_RENTAL_COUNT_BY_CITY";
 export const FETCH_RENTAL_COUNT_BY_CITY_REJECTED = "FETCH_RENTAL_COUNT_BY_CITY_REJECTED";
 export const FETCH_RENTAL_COUNT_BY_CITY_FULFILLED = "FETCH_RENTAL_COUNT_BY_CITY_FULFILLED";
+export const FETCH_RENTAL_STATUS = "FETCH_RENTAL_STATUS";
+export const FETCH_RENTAL_STATUS_REJECTED = "FETCH_RENTAL_STATUS_REJECTED";
+export const FETCH_RENTAL_STATUS_FULFILLED = "FETCH_RENTAL_STATUS_FULFILLED";
 
 export const fetchRentalsByCity = () => {
   return function(dispatch) {
@@ -31,6 +34,20 @@ export const fetchRentalCountByCity = () => {
       })
       .catch((err) => {
         dispatch({type: FETCH_RENTAL_COUNT_BY_CITY_REJECTED, payload: err})
+      })
+  }
+}
+
+export const fetchRentalStatus = () => {
+  return function(dispatch) {
+    dispatch({type: FETCH_RENTAL_STATUS});
+
+    axios.get("http://localhost:8080/api/rentals/groupedby/recordStatus")
+      .then((response) => {
+        dispatch({type: FETCH_RENTAL_STATUS_FULFILLED, payload: response.data})
+      })
+      .catch((err) => {
+        dispatch({type: FETCH_RENTAL_STATUS_REJECTED, payload: err})
       })
   }
 }

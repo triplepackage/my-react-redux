@@ -1,15 +1,16 @@
-import { combineReducers } from "redux";
 import * as Action from '../actions/rentals';
 
 const initialState = {
   isRentalsByCityDataFetching: false,
   isRentalCountByCityDataFetching: false,
+  isRentalStatusDataFetching: false,
   rentalsByCityData: [],
   rentalCountByCityData: [],
+  rentalStatusData: [],
   error: null,
 };
 
-const rentals = (state=initialState, action) => {
+export const rentals = (state=initialState, action) => {
     switch (action.type) {
       case Action.FETCH_RENTALS_BY_CITY: {
         return {...state, isRentalsByCityDataFetching: true}
@@ -37,11 +38,20 @@ const rentals = (state=initialState, action) => {
           rentalCountByCityData: action.payload,
         }
       }
+      case Action.FETCH_RENTAL_STATUS: {
+        return {...state, isRentalStatusDataFetching: true}
+      }
+      case Action.FETCH_RENTAL_STATUS_REJECTED: {
+        return {...state, isRentalStatusDataFetching: false, error: action.payload}
+      }
+      case Action.FETCH_RENTAL_STATUS_FULFILLED: {
+        return {
+          ...state,
+          isRentalStatusDataFetching: false,
+          rentalStatusData: action.payload,
+        }
+      }
       default:
         return state;
     }
 }
-
-export const reducers = combineReducers({
-  rentals
-})

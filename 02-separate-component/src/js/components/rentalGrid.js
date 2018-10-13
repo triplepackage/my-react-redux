@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import ReactTable from "react-table";
 import { connect } from "react-redux"
+import * as Action from '../actions/rentals'
 
 class RentalGrid extends Component {
+  componentDidMount() {
+    this.props.fetchRentalsByCity();
+  }
+
   render() {
     const { rentalsByCityData } = this.props;
 
@@ -52,10 +57,18 @@ class RentalGrid extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+  return{
+    fetchRentalsByCity: () => {
+      dispatch(Action.fetchRentalsByCity())
+    }
+  };
+};
+
 const mapStateToProps = (state) => {
   return{
     rentalsByCityData: state.rentals.rentalsByCityData
   };
 };
 
-export default connect(mapStateToProps)(RentalGrid);
+export default connect(mapStateToProps, mapDispatchToProps)(RentalGrid);

@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import {HorizontalBar} from 'react-chartjs-2';
 import { connect } from "react-redux"
+import * as Action from '../actions/rentals'
 
 class RentalBarChart extends Component {
+  componentDidMount() {
+    this.props.fetchRentalCountByCity();
+  }
+
   render() {
     const { rentalCountByCityData } = this.props;
 
@@ -36,10 +41,18 @@ class RentalBarChart extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+  return{
+    fetchRentalCountByCity: () => {
+      dispatch(Action.fetchRentalCountByCity())
+    }
+  };
+};
+
 const mapStateToProps = (state) => {
   return{
     rentalCountByCityData: state.rentals.rentalCountByCityData
   };
 };
 
-export default connect(mapStateToProps)(RentalBarChart);
+export default connect(mapStateToProps, mapDispatchToProps)(RentalBarChart);
