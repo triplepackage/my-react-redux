@@ -56,11 +56,11 @@ export class App extends Component {
                   <Panel.Heading>Rental Data</Panel.Heading>
                   <Panel.Body>
                     <Switch>
-                        <Route exact={ true } path="/" component={ RentalGrid }/>
-                        <Route path="/datagrid" component={ RentalGrid }/>
-                        <Route path="/barchart" component={ RentalBarChart }/>
-                        <Route path="/doughnut" component={ RentalDoughnut }/>
-                        <Route path="/rental" component={ RentalForm }/>
+                        <Route exact={true} path="/" component={ RentalGrid }/>
+                        <Route path="/datagrid" exact={true} component={ RentalGrid }/>
+                        <Route path="/barchart" exact={true} component={ RentalBarChart }/>
+                        <Route path="/doughnut" exact={true} component={ RentalDoughnut }/>
+                        <Route path="/rental" exact={true} component={ RentalForm }/>
                         <Route render={ () => <h1>404 Error</h1> } />
                     </Switch>
                   </Panel.Body>

@@ -13,11 +13,8 @@ class RentalGrid extends Component {
     return {
       onClick: e => {
         this.props.setCurrentRental(rowInfo.original);
-
         this.props.history.push({
-          pathname: '/rental',
-          search: '?recordId=' + rowInfo.original['recordId'],
-          state: { detail: rowInfo.original }
+          pathname: '/rental'
         })
       }
     }
