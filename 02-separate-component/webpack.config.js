@@ -2,6 +2,8 @@ var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
 
+const ASSET_PATH = process.env.ASSET_PATH || '/';
+
 module.exports = {
   context: path.join(__dirname, "src"),
   devtool: debug ? "inline-sourcemap" : null,
@@ -25,11 +27,15 @@ module.exports = {
   },
   output: {
     path: __dirname + "/src/",
-    filename: "client.min.js"
+    filename: "client.min.js",
+    publicPath: '/'
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
   ],
 };
