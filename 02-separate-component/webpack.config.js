@@ -1,6 +1,7 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
+var dotenv = require('dotenv-webpack')
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 
@@ -33,9 +34,12 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
   },
-  plugins: debug ? [] : [
+  plugins: debug ? [
+    new dotenv()
+  ] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new dotenv()
   ],
 };

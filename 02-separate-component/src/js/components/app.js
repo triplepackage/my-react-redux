@@ -43,7 +43,7 @@ const NavLinks = () => {
 }
 
 export class App extends Component {
-  render() {
+  render() {    
     return (
       <Provider store={store}>
         <Router>
