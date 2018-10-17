@@ -6,6 +6,12 @@ class RentalForm extends Component {
   render() {
     const { rental } = this.props;
 
+    if (JSON.stringify(rental) == "{}"){
+      this.props.history.push({
+        pathname: '/'
+      })
+    }
+
     return (
       <form>
         <FormGroup
@@ -14,49 +20,49 @@ class RentalForm extends Component {
           <FormControl
             bsSize="sm"
             type="text"
-            value={rental.streetNumber}
+            defaultValue={rental.streetNumber}
             placeholder="Enter text"
           />
           <ControlLabel>Street Name</ControlLabel>
           <FormControl
             bsSize="sm"
             type="text"
-            value={rental.streetName}
+            defaultValue={rental.streetName}
             placeholder="Enter text"
           />
           <ControlLabel>City</ControlLabel>
           <FormControl
             bsSize="sm"
             type="text"
-            value={rental.city}
+            defaultValue={rental.city}
             placeholder="Enter text"
           />
           <ControlLabel>State</ControlLabel>
           <FormControl
             bsSize="sm"
             type="text"
-            value={rental.state}
+            defaultValue={rental.state}
             placeholder="Enter text"
           />
           <ControlLabel>Zip Code</ControlLabel>
           <FormControl
             bsSize="sm"
             type="text"
-            value={rental.zipCode}
+            defaultValue={rental.zipCode}
             placeholder="Enter text"
           />
           <ControlLabel>Issue Date</ControlLabel>
           <FormControl
             bsSize="sm"
             type="text"
-            value={rental.issueDate}
+            defaultValue={rental.issueDate}
             placeholder="Enter text"
           />
           <ControlLabel>Expiration Date</ControlLabel>
           <FormControl
             bsSize="sm"
             type="text"
-            value={rental.expirationDate}
+            defaultValue={rental.expirationDate}
             placeholder="Enter text"
           />
           <FormControl.Feedback />
