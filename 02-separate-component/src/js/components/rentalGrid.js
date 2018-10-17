@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import ReactTable from "react-table";
+import Moment from 'react-moment';
 import { connect } from "react-redux"
 import * as Action from '../actions/rentals'
 
 class RentalGrid extends Component {
   componentDidMount() {
     this.props.fetchRentalsByCity();
+  }
+
+  alignLeft = (text) => {
+    return <div style={{textAlign: "left"}}>{text}</div>
   }
 
   onRowClick = (state, rowInfo) => {
@@ -25,37 +30,37 @@ class RentalGrid extends Component {
 
     const columns = [{
         id: 'streetNumber',
-        Header: 'Street Number',
+        Header: this.alignLeft("Street Number"),
         accessor: d => d.streetNumber
       },
       {
         id: 'streetName',
-        Header: 'Street Name',
+        Header: this.alignLeft("Street Name"),
         accessor: d => d.streetName
       },
       {
         id: 'city',
-        Header: 'City',
+        Header: this.alignLeft("City"),
         accessor: d => d.city
       },
       {
         id: 'zipCode',
-        Header: 'Zip Code',
+        Header: this.alignLeft("Zip Code"),
         accessor: d => d.zipCode
       },
       {
         id: 'issueDate',
-        Header: 'Issue Date',
+        Header: this.alignLeft("Issue Date"),
         accessor: d => d.issueDate
       },
       {
         id: 'expirationDate',
-        Header: 'ExpirationDate ',
+        Header: () => this.alignLeft("Expiration Date"),
         accessor: d => d.expirationDate
       },
       {
         id: 'recordStatus',
-        Header: 'Status',
+        Header: this.alignLeft("Status"),
         accessor: d => d.recordStatus
       }];
 
@@ -65,10 +70,13 @@ class RentalGrid extends Component {
             getTrProps={this.onRowClick}
             columns={columns}
             className="-striped -highlight"
+            loading={this.props.isRentalsByCityDataFetching}
           />
       );
     }
 }
+
+
 
 const mapDispatchToProps = dispatch => {
   return{
@@ -79,7 +87,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state) => {
   return{
-    rentalsByCityData: state.rentals.rentalsByCityData
+    rentalsByCityData: state.rentals.rentalsByCityData,
+    isRentalsByCityDataFetching : state.rentals.isRentalsByCityDataFetching
   };
 };
 
