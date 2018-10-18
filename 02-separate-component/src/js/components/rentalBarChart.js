@@ -8,6 +8,7 @@ class RentalBarChart extends Component {
     this.props.fetchRentalCountByCity();
   }
 
+
   render() {
     const { rentalCountByCityData } = this.props;
 
@@ -36,7 +37,12 @@ class RentalBarChart extends Component {
     }
 
       return (
-        <HorizontalBar data={horizontalBarData} />
+        <HorizontalBar data={horizontalBarData} onElementsClick={elems => {
+          this.props.setCurrentCity(chartLabel[elems[0]._index]);
+          this.props.history.push({
+            pathname: '/datagrid'
+          })
+        }}/>
       );
     }
 }
@@ -45,7 +51,8 @@ const mapDispatchToProps = dispatch => {
   return{
     fetchRentalCountByCity: () => {
       dispatch(Action.fetchRentalCountByCity())
-    }
+    },
+    setCurrentCity: (city) => dispatch(Action.setCurrentCity(city)),
   };
 };
 

@@ -8,6 +8,7 @@ const initialState = {
   rentalCountByCityData: [],
   rentalStatusData: [],
   selectedRental: {},
+  selectedCity: null,
   error: null,
 };
 
@@ -57,6 +58,10 @@ export const rentals = (state=initialState, action) => {
           ...state,
           selectedRental: action.rental,
         }
+      }
+      case Action.SET_CURRENT_CITY:{
+        return {...state,
+          selectedCity: action.city}
       }
       default:
         return state;

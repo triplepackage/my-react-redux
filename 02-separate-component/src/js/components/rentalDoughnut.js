@@ -43,7 +43,7 @@ class RentalDoughnut extends Component {
     }
 
     return (
-      <Doughnut data={doughnutData} />
+      <Doughnut data={doughnutData}  />
     );
   }
 }

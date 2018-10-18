@@ -7,7 +7,8 @@ import * as Action from '../actions/rentals'
 
 class RentalGrid extends Component {
   componentDidMount() {
-    this.props.fetchRentalsByCity();
+    let selectedCity = this.props.selectedCity == null ? process.env.DEFAULT_RENTAL_CITY : this.props.selectedCity;
+    this.props.fetchRentalsByCity(selectedCity);
   }
 
   alignLeft = (text) => {
@@ -76,11 +77,9 @@ class RentalGrid extends Component {
     }
 }
 
-
-
 const mapDispatchToProps = dispatch => {
   return{
-    fetchRentalsByCity: () =>  dispatch(Action.fetchRentalsByCity()),
+    fetchRentalsByCity: (city) =>  dispatch(Action.fetchRentalsByCity(city)),
     setCurrentRental: (currentRental) => dispatch(Action.setCurrentRental(currentRental))
   }
 };
@@ -88,7 +87,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = (state) => {
   return{
     rentalsByCityData: state.rentals.rentalsByCityData,
-    isRentalsByCityDataFetching : state.rentals.isRentalsByCityDataFetching
+    isRentalsByCityDataFetching : state.rentals.isRentalsByCityDataFetching,
+    selectedCity: state.rentals.selectedCity
   };
 };
 
