@@ -26,9 +26,6 @@ module.exports = {
     publicPath: "/"
   },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({template: path.join(__dirname,"/src/index.html")}),
     new dotenv()
