@@ -1,11 +1,29 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import ReactTable from "react-table";
+import Moment from 'react-moment';
 import { connect } from "react-redux"
 import * as Action from '../actions/rentals'
 
 class RentalGrid extends Component {
   componentDidMount() {
-    this.props.fetchRentalsByCity();
+    let selectedCity = this.props.selectedCity == null ? process.env.DEFAULT_RENTAL_CITY : this.props.selectedCity;
+    this.props.fetchRentalsByCity(selectedCity);
+  }
+
+  alignLeft = (text) => {
+    return <div style={{textAlign: "left"}}>{text}</div>
+  }
+
+  onRowClick = (state, rowInfo) => {
+    return {
+      onClick: e => {
+        this.props.setCurrentRental(rowInfo.original);
+        this.props.history.push({
+          pathname: '/rental'
+        })
+      }
+    }
   }
 
   render() {
@@ -13,45 +31,47 @@ class RentalGrid extends Component {
 
     const columns = [{
         id: 'streetNumber',
-        Header: 'Street Number',
+        Header: this.alignLeft("Street Number"),
         accessor: d => d.streetNumber
       },
       {
         id: 'streetName',
-        Header: 'Street Name',
+        Header: this.alignLeft("Street Name"),
         accessor: d => d.streetName
       },
       {
         id: 'city',
-        Header: 'City',
+        Header: this.alignLeft("City"),
         accessor: d => d.city
       },
       {
         id: 'zipCode',
-        Header: 'Zip Code',
+        Header: this.alignLeft("Zip Code"),
         accessor: d => d.zipCode
       },
       {
         id: 'issueDate',
-        Header: 'Issue Date',
+        Header: this.alignLeft("Issue Date"),
         accessor: d => d.issueDate
       },
       {
         id: 'expirationDate',
-        Header: 'ExpirationDate ',
+        Header: () => this.alignLeft("Expiration Date"),
         accessor: d => d.expirationDate
       },
       {
         id: 'recordStatus',
-        Header: 'Status',
+        Header: this.alignLeft("Status"),
         accessor: d => d.recordStatus
       }];
 
       return (
         <ReactTable
             data={rentalsByCityData}
+            getTrProps={this.onRowClick}
             columns={columns}
             className="-striped -highlight"
+            loading={this.props.isRentalsByCityDataFetching}
           />
       );
     }
@@ -59,15 +79,16 @@ class RentalGrid extends Component {
 
 const mapDispatchToProps = dispatch => {
   return{
-    fetchRentalsByCity: () => {
-      dispatch(Action.fetchRentalsByCity())
-    }
-  };
+    fetchRentalsByCity: (city) =>  dispatch(Action.fetchRentalsByCity(city)),
+    setCurrentRental: (currentRental) => dispatch(Action.setCurrentRental(currentRental))
+  }
 };
 
 const mapStateToProps = (state) => {
   return{
-    rentalsByCityData: state.rentals.rentalsByCityData
+    rentalsByCityData: state.rentals.rentalsByCityData,
+    isRentalsByCityDataFetching : state.rentals.isRentalsByCityDataFetching,
+    selectedCity: state.rentals.selectedCity
   };
 };
 

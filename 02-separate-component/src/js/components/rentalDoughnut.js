@@ -25,25 +25,25 @@ class RentalDoughnut extends Component {
         data: chartData,
         backgroundColor: [
           '#FF6384',
-          '#36A2EB',
+          '#F6B8EB',
           '#FBCC56',
           '#FF7984',
-          '#F6B8EB',
+          '#36A2EB',
           '#BCEE56'
         ],
         hoverBackgroundColor: [
           '#FF6384',
-          '#36A2EB',
+          '#F6B8EB',
           '#FBCC56',
           '#FF7984',
-          '#F6B8EB',
+          '#36A2EB',
           '#BCEE56'
         ]
       }]
-    }   
+    }
 
     return (
-      <Doughnut data={doughnutData} />
+      <Doughnut data={doughnutData}  />
     );
   }
 }

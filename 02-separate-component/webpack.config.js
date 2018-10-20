@@ -1,6 +1,9 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
+var dotenv = require('dotenv-webpack')
+
+const ASSET_PATH = process.env.ASSET_PATH || '/';
 
 module.exports = {
   context: path.join(__dirname, "src"),
@@ -25,11 +28,18 @@ module.exports = {
   },
   output: {
     path: __dirname + "/src/",
-    filename: "client.min.js"
+    filename: "client.min.js",
+    publicPath: '/'
   },
-  plugins: debug ? [] : [
+  devServer: {
+    historyApiFallback: true,
+  },
+  plugins: debug ? [
+    new dotenv()
+  ] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new dotenv()
   ],
 };

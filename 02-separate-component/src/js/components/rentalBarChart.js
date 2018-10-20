@@ -15,7 +15,7 @@ class RentalBarChart extends Component {
     let chartLabel = [];
 
     rentalCountByCityData.forEach(function(rentalCount) {
-      if(rentalCount.count > 100){
+      if(rentalCount.count > 50){
         chartData.push(parseInt(rentalCount.count));
         chartLabel.push(rentalCount.stat);
       }
@@ -35,9 +35,13 @@ class RentalBarChart extends Component {
       }]
     }
 
-      return (
-        <HorizontalBar data={horizontalBarData} />
-      );
+    return (
+      <HorizontalBar
+        data = {horizontalBarData}
+        onElementsClick = { elems => {
+          this.props.setCurrentCity(chartLabel[elems[0]._index]);
+          this.props.history.push({ pathname: '/datagrid' })
+        }}/>);
     }
 }
 
@@ -45,7 +49,8 @@ const mapDispatchToProps = dispatch => {
   return{
     fetchRentalCountByCity: () => {
       dispatch(Action.fetchRentalCountByCity())
-    }
+    },
+    setCurrentCity: (city) => dispatch(Action.setCurrentCity(city)),
   };
 };
 
