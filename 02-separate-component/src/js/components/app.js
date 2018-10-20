@@ -24,11 +24,8 @@ const NavLinks = () => {
          </Navbar.Header>
          <Navbar.Collapse>
            <Nav pullRight>
-             <NavItem componentClass={Link} href="/datagrid" to="/datagrid">
+             <NavItem componentClass={Link} href="/datagrid" to="/barchart">
                Home
-             </NavItem>
-             <NavItem componentClass={Link} href="/datagrid" to="/datagrid">
-               Rental Data
              </NavItem>
              <NavItem componentClass={Link} href="/barchart" to="/barchart">
                Rentals by City
@@ -56,7 +53,7 @@ export class App extends Component {
                   <Panel.Heading>Rental Data</Panel.Heading>
                   <Panel.Body>
                     <Switch>
-                        <Route exact={true} path="/" component={ RentalGrid }/>
+                        <Route exact={true} path="/" component={ RentalBarChart }/>
                         <Route path="/datagrid" exact={true} component={ RentalGrid }/>
                         <Route path="/barchart" exact={true} component={ RentalBarChart }/>
                         <Route path="/doughnut" exact={true} component={ RentalDoughnut }/>

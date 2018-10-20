@@ -8,7 +8,6 @@ class RentalBarChart extends Component {
     this.props.fetchRentalCountByCity();
   }
 
-
   render() {
     const { rentalCountByCityData } = this.props;
 
@@ -16,7 +15,7 @@ class RentalBarChart extends Component {
     let chartLabel = [];
 
     rentalCountByCityData.forEach(function(rentalCount) {
-      if(rentalCount.count > 100){
+      if(rentalCount.count > 50){
         chartData.push(parseInt(rentalCount.count));
         chartLabel.push(rentalCount.stat);
       }
@@ -36,14 +35,13 @@ class RentalBarChart extends Component {
       }]
     }
 
-      return (
-        <HorizontalBar data={horizontalBarData} onElementsClick={elems => {
+    return (
+      <HorizontalBar
+        data = {horizontalBarData}
+        onElementsClick = { elems => {
           this.props.setCurrentCity(chartLabel[elems[0]._index]);
-          this.props.history.push({
-            pathname: '/datagrid'
-          })
-        }}/>
-      );
+          this.props.history.push({ pathname: '/datagrid' })
+        }}/>);
     }
 }
 
