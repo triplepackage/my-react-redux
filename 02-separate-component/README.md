@@ -1,4 +1,4 @@
-# react-redux-practice
+# React-Redux Rental Database UI
 
 Helpful commands
 
@@ -14,7 +14,6 @@ content is served from /Users/admin/GitHub/react-redux-pratice/4-redux/src
 Hash: ac9e11b6d563b45d9562
 Version: webpack 1.15.0
 Time: 878ms
-
 </pre>
 
 <pre>
@@ -25,5 +24,9 @@ Time: 596ms
         Asset    Size  Chunks             Chunk Names
 client.min.js  287 kB       0  [emitted]  main
     + 50 hidden modules
-
 </pre>
+
+![Alt text](../assets/image02.jpg?raw=true "AWS")
+![Alt text](../assets/image01.jpg?raw=true "AWS")
+![Alt text](../assets/image03.jpg?raw=true "AWS")
+![Alt text](../assets/image04.jpg?raw=true "AWS")
