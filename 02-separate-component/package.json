@@ -1,6 +1,6 @@
 {
-  "name": "react-tutorials",
-  "version": "0.0.0",
+  "name": "baltimore-county-rental-portal",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -42,10 +42,9 @@
     "style-loader": "^0.23.1"
   },
   "scripts": {
-    "dev": "webpack-dev-server --content-base src --inline --hot --port 5000 --host 0.0.0.0",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --inline --hot --port 5000 --host 0.0.0.0",
     "build": "webpack --mode production"
   },
-  "author": "",
+  "author": "John Domingo",
   "license": "ISC"
 }
