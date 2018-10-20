@@ -15,6 +15,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "chart.js": "^2.7.3",
+    "clean-webpack-plugin": "^0.1.19",
     "dotenv-webpack": "^1.5.7",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
@@ -34,7 +35,8 @@
     "register-service-worker": "^1.5.2",
     "webpack": "^1.12.9",
     "webpack-cli": "^1.0",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "webpack-merge": "^4.1.4"
   },
   "devDependencies": {
     "html-loader": "^0.5.5",
@@ -42,8 +44,8 @@
     "style-loader": "^0.23.1"
   },
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --port 5000 --host 0.0.0.0",
-    "build": "webpack --mode production"
+    "dev": "webpack-dev-server --config webpack.dev.js --inline --hot --port 5000 --host 0.0.0.0",
+    "build": "webpack --mode production --config webpack.prod.js"
   },
   "author": "John Domingo",
   "license": "ISC"

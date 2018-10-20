@@ -1,7 +1,8 @@
-var path = require('path');
-var webpack = require('webpack');
-var dotenv = require('dotenv-webpack');
+const path = require('path');
+const webpack = require('webpack');
+const dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   context: path.join(__dirname, "src"),
@@ -24,13 +25,11 @@ module.exports = {
     filename: "client.min.js",
     publicPath: "/"
   },
-  devServer: {
-    historyApiFallback: true,
-  },
   plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({template: path.join(__dirname,"/src/index.html")}),
     new dotenv()
   ],
