@@ -26,7 +26,7 @@ client.min.js  287 kB       0  [emitted]  main
     + 50 hidden modules
 </pre>
 
-![Alt text](../assets/image02.jpg?raw=true "AWS")
-![Alt text](../assets/image01.jpg?raw=true "AWS")
-![Alt text](../assets/image03.jpg?raw=true "AWS")
-![Alt text](../assets/image04.jpg?raw=true "AWS")
+![Alt text](./assets/image02.jpg?raw=true "AWS")
+![Alt text](./assets/image01.jpg?raw=true "AWS")
+![Alt text](./assets/image03.jpg?raw=true "AWS")
+![Alt text](./assets/image04.jpg?raw=true "AWS")
