@@ -1,5 +1,7 @@
 # React-Redux Rental Database UI
 
+http://ec2-34-204-247-182.compute-1.amazonaws.com/
+
 Helpful commands
 
 <pre>
