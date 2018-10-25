@@ -1,0 +1,13 @@
+node_modules
+npm-debug.log
+.DS_Store
+dist/
+lib
+coverage/
+
+package-lock.json
+*.min.js
+
+.env
+
+src/js/reducers/index.js
