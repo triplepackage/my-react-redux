@@ -10,3 +10,9 @@
     height: 60px;
     line-height: 60px;
 }
+
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}

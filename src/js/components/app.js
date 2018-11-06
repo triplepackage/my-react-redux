@@ -48,7 +48,7 @@ export class App extends Component {
               <div className="page-header">
                 <NavLinks />
               </div>
-              <div className="jumbotron col-sm-10 col-sm-offset-1">
+              <div className="jumbotron col-sm-8 col-sm-offset-2">
                 <Panel bsStyle="primary">
                   <Panel.Heading>Rental Data</Panel.Heading>
                   <Panel.Body>
@@ -64,8 +64,10 @@ export class App extends Component {
                 </Panel>
                 <div class="container">
                   <div class="row">
-                    <div class="col-sm">
-                      <img src="http://assets.okfn.org/images/ok_buttons/od_80x15_blue.png" alt="[Open Data]" />
+                    <div class="col-sm-4" class="middle">
+                        <span><img src="http://assets.okfn.org/images/ok_buttons/od_80x15_blue.png" alt="[Open Data]" /></span>
+                    </div>
+                    <div class="col-sm-8">
                     </div>
                   </div>
                 </div>
