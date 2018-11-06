@@ -2,21 +2,17 @@
   "name": "baltimore-county-rental-portal",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "js/index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --mode development --config webpack.dev.js --inline --hot --port 5000 --host 0.0.0.0",
+    "build": "webpack --mode production --config webpack.prod.js "
+  },
+  "keywords": [],
+  "author": "John Domingo",
+  "license": "ISC",
   "dependencies": {
     "axios": "^0.12.0",
-    "babel-core": "^6.17.0",
-    "babel-loader": "^6.2.0",
-    "babel-plugin-add-module-exports": "^0.1.2",
-    "babel-plugin-react-html-attrs": "^2.0.0",
-    "babel-plugin-transform-class-properties": "^6.3.13",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",
     "chart.js": "^2.7.3",
-    "clean-webpack-plugin": "^0.1.19",
     "dotenv-webpack": "^1.5.7",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
@@ -33,21 +29,22 @@
     "redux-logger": "^2.6.1",
     "redux-promise-middleware": "^3.2.0",
     "redux-thunk": "^2.1.0",
-    "register-service-worker": "^1.5.2",
-    "webpack": "^1.12.9",
-    "webpack-cli": "^1.0",
-    "webpack-dev-server": "^1.14.1",
-    "webpack-merge": "^4.1.4"
+    "register-service-worker": "^1.5.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "style-loader": "^0.23.1"
-  },
-  "scripts": {
-    "dev": "webpack-dev-server --config webpack.dev.js --inline --hot --port 5000 --host 0.0.0.0",
-    "build": "webpack --mode production --config webpack.prod.js"
-  },
-  "author": "John Domingo",
-  "license": "ISC"
+    "mini-css-extract-plugin": "^0.4.4",
+    "webpack": "^4.25.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4"
+  }
 }

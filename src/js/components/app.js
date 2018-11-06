@@ -58,10 +58,17 @@ export class App extends Component {
                         <Route path="/barchart" exact={true} component={ RentalBarChart }/>
                         <Route path="/doughnut" exact={true} component={ RentalDoughnut }/>
                         <Route path="/rental" exact={true} component={ RentalForm }/>
-                        <Route render={ () => <h1>404 Error</h1> } />
+                        <Route render={ () => <h1 class="error">404 Error</h1> } />
                     </Switch>
                   </Panel.Body>
                 </Panel>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm">
+                      <img src="http://assets.okfn.org/images/ok_buttons/od_80x15_blue.png" alt="[Open Data]" />
+                    </div>
+                  </div>
+                </div>
               </div>
           </div>
         </Router>
