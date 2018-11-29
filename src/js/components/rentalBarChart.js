@@ -35,9 +35,16 @@ class RentalBarChart extends Component {
       }]
     }
 
+    const options={
+      legend: {
+          display: false,
+      },
+    };
+
     return (
       <HorizontalBar
         data = {horizontalBarData}
+        options={options}
         onElementsClick = { elems => {
           this.props.setCurrentCity(chartLabel[elems[0]._index]);
           this.props.history.push({ pathname: '/datagrid' })
