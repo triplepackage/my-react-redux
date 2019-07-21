@@ -5,13 +5,14 @@ import * as Action from '../actions/rentals'
 
 class RentalForm extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
     e.preventDefault();
+    this.props.rental.streetNumber = e.target.value;
     this.props.updateRental(this.props.rental);
   }
 
