@@ -9,6 +9,9 @@ export const FETCH_RENTAL_COUNT_BY_CITY_FULFILLED = "FETCH_RENTAL_COUNT_BY_CITY_
 export const FETCH_RENTAL_STATUS = "FETCH_RENTAL_STATUS";
 export const FETCH_RENTAL_STATUS_REJECTED = "FETCH_RENTAL_STATUS_REJECTED";
 export const FETCH_RENTAL_STATUS_FULFILLED = "FETCH_RENTAL_STATUS_FULFILLED";
+export const UPDATE_RENTAL = "UPDATE_RENTAL";
+export const UPDATE_RENTAL_COMPLETED = "UPDATE_RENTAL_COMPLETED";
+export const UPDATE_RENTAL_FAILED = "UPDATE_RENTAL_FAILED";
 export const SET_CURRENT_RENTAL = "SET_CURRENT_RENTAL";
 export const SET_CURRENT_CITY= "SET_CURRENT_CITY";
 
@@ -50,6 +53,20 @@ export const fetchRentalStatus = () => {
       })
       .catch((err) => {
         dispatch({type: FETCH_RENTAL_STATUS_REJECTED, payload: err})
+      })
+  }
+}
+
+export const updateRental = (rental) => {
+  return function(dispatch) {
+    dispatch({type: UPDATE_RENTAL});
+
+    axios.post(process.env.RENTAL_API_URL + "rental/", rental)
+      .then((response) => {
+        dispatch({type: UPDATE_RENTAL_COMPLETED, payload: response.data})
+      })
+      .catch((err) => {
+        dispatch({type: UPDATE_RENTAL_FAILED, payload: err})
       })
   }
 }

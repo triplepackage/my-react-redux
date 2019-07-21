@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import { FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
 import { connect } from "react-redux"
+import * as Action from '../actions/rentals'
 
 class RentalForm extends Component {
+
+  constructor() {
+    super();
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    e.preventDefault();
+    this.props.updateRental(this.props.rental);
+  }
+
   render() {
     const { rental } = this.props;
 
@@ -22,6 +34,7 @@ class RentalForm extends Component {
             type="text"
             defaultValue={rental.streetNumber}
             placeholder="Enter text"
+            onChange={this.handleChange}
           />
           <ControlLabel>Street Name</ControlLabel>
           <FormControl
@@ -73,10 +86,16 @@ class RentalForm extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return{
+    updateRental: (rental) =>  dispatch(Action.updateRental(rental))
+  }
+};
+
 const mapStateToProps = (state) => {
   return{
     rental: state.rentals.selectedRental
   };
 };
 
-export default connect(mapStateToProps)(RentalForm);
+export default connect(mapStateToProps, mapDispatchToProps)(RentalForm);

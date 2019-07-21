@@ -59,9 +59,8 @@ export const rentals = (state=initialState, action) => {
           selectedRental: action.rental,
         }
       }
-      case Action.SET_CURRENT_CITY:{
-        return {...state,
-          selectedCity: action.city}
+      case Action.UPDATE_RENTAL:{
+        return {...state}
       }
       default:
         return state;
