@@ -11,8 +11,18 @@ class RentalForm extends Component {
   }
 
   handleChange(e) {
-    e.preventDefault();
-    this.props.rental.streetNumber = e.target.value;
+    switch(e.target.name){
+      case "streetNumber":
+        this.props.rental.streetNumber = e.target.value;
+        break;
+      case "streetName":
+        this.props.rental.streetName = e.target.value;
+        break;
+      case "city":
+        this.props.rental.city = e.target.value;
+        break;
+    }
+
     this.props.updateRental(this.props.rental);
   }
 
@@ -34,6 +44,7 @@ class RentalForm extends Component {
             bsSize="sm"
             type="text"
             defaultValue={rental.streetNumber}
+            name="streetNumber"
             placeholder="Enter text"
             onChange={this.handleChange}
           />
@@ -42,14 +53,18 @@ class RentalForm extends Component {
             bsSize="sm"
             type="text"
             defaultValue={rental.streetName}
+            name="streetName"
             placeholder="Enter text"
+            onChange={this.handleChange}
           />
           <ControlLabel>City</ControlLabel>
           <FormControl
             bsSize="sm"
             type="text"
             defaultValue={rental.city}
+            name="city"
             placeholder="Enter text"
+            onChange={this.handleChange}
           />
           <ControlLabel>State</ControlLabel>
           <FormControl
