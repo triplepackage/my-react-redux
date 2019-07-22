@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, HelpBlock, Button} from 'react-bootstrap';
 import { connect } from "react-redux"
 import * as Action from '../actions/rentals'
 
@@ -8,6 +8,12 @@ class RentalForm extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.updateRental(this.props.rental);
   }
 
   handleChange(e) {
@@ -22,8 +28,6 @@ class RentalForm extends Component {
         this.props.rental.city = e.target.value;
         break;
     }
-
-    this.props.updateRental(this.props.rental);
   }
 
   render() {
@@ -36,7 +40,7 @@ class RentalForm extends Component {
     }
 
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <FormGroup
           controlId="formBasicText">
           <ControlLabel>Street Number</ControlLabel>
@@ -94,9 +98,10 @@ class RentalForm extends Component {
             defaultValue={rental.expirationDate}
             placeholder="Enter text"
           />
-          <FormControl.Feedback />
-          <HelpBlock>Validation is based on string length.</HelpBlock>
         </FormGroup>
+        <Button className="btn btn-primary btn-large centerButton" type="submit">Submit</Button>
+        <FormControl.Feedback />
+        <HelpBlock>Validation is based on string length.</HelpBlock>
       </form>
     );
   }
