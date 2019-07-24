@@ -27,6 +27,12 @@ class RentalForm extends Component {
       case "city":
         this.props.rental.city = e.target.value;
         break;
+      case "issueDate":
+        this.props.rental.issueDate = e.target.value;
+        break;
+      case "expirationDate":
+        this.props.rental.expirationDate = e.target.value;
+        break;
     }
   }
 
@@ -89,14 +95,18 @@ class RentalForm extends Component {
             bsSize="sm"
             type="text"
             defaultValue={rental.issueDate}
+            name="issueDate"
             placeholder="Enter text"
+            onChange={this.handleChange}
           />
           <ControlLabel>Expiration Date</ControlLabel>
           <FormControl
             bsSize="sm"
             type="text"
             defaultValue={rental.expirationDate}
+            name="expirationDate"
             placeholder="Enter text"
+            onChange={this.handleChange}
           />
         </FormGroup>
         <Button className="btn btn-primary btn-large centerButton" type="submit">Submit</Button>

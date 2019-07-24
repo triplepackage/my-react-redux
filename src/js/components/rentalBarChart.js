@@ -63,7 +63,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state) => {
   return{
-    rentalCountByCityData: state.rentals.rentalCountByCityData
+    rentalCountByCityData: state.rentals.rentalCountByCityData,
+    selectedCity: state.rentals.selectedCity
   };
 };
 
