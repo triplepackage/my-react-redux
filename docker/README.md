@@ -136,7 +136,7 @@ REPOSITORY                                                  TAG                 
 <none>                                                      <none>              d640fd162af7        37 hours ago        244MB
 mysql                                                       5.7                 1b30b36ae96a        12 months ago       372MB
 
-ubuntu@ip-172-31-61-12:~$ sudo docker run --rm -d -p 80:80 -e http://ec2-34-204-247-182.compute-1.amazonaws.com:8080/api/ -e DEFAULT_RENTAL_CITY=NOTTINGHAM 83b7d3b666e7
+ubuntu@ip-172-31-61-12:~$ docker run --rm -d -p 80:80 -e RENTAL_API_URL=http://ec2-34-204-247-182.compute-1.amazonaws.com:8080/api/ -e DEFAULT_RENTAL_CITY=NOTTINGHAM 83b7d3b666e7
 5120c82fd9fc8e029744e15d631b70b76d2581167f31e43bc52e45b9a3780b56
 
 ubuntu@ip-172-31-61-12:~$ sudo docker ps -a
