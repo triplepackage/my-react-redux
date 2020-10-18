@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import ReactTable from "react-table";
-import Moment from 'react-moment';
 import { connect } from "react-redux"
 import * as Action from '../actions/rentals'
+import "react-table/react-table.css";
 
 class RentalGrid extends Component {
   componentDidMount() {
@@ -29,7 +28,8 @@ class RentalGrid extends Component {
   render() {
     const { rentalsByCityData } = this.props;
 
-    const columns = [{
+    const columns = [
+      {
         id: 'streetNumber',
         Header: this.alignLeft("Street Number"),
         accessor: d => d.streetNumber
@@ -63,22 +63,23 @@ class RentalGrid extends Component {
         id: 'recordStatus',
         Header: this.alignLeft("Status"),
         accessor: d => d.recordStatus
-      }];
+      }
+    ];
 
-      return (
+    return (
         <ReactTable
             data={rentalsByCityData}
             getTrProps={this.onRowClick}
             columns={columns}
             className="-striped -highlight"
             loading={this.props.isRentalsByCityDataFetching}
-          />
-      );
-    }
+        />
+    );
+  }
 }
 
 const mapDispatchToProps = dispatch => {
-  return{
+  return {
     fetchRentalsByCity: (city) =>  dispatch(Action.fetchRentalsByCity(city)),
     setCurrentRental: (currentRental) => dispatch(Action.setCurrentRental(currentRental))
   }
