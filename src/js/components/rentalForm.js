@@ -1,45 +1,44 @@
-import React, { Component } from 'react';
-import { FormGroup, ControlLabel, FormControl, HelpBlock, Button} from 'react-bootstrap';
-import { connect } from "react-redux"
+import React, { Component } from 'react'
+import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap'
+import { connect } from 'react-redux'
 import * as Action from '../actions/rentals'
 
 class RentalForm extends Component {
-
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  constructor (props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.updateRental(this.props.rental);
+  handleSubmit (e) {
+    e.preventDefault()
+    this.props.updateRental(this.props.rental)
   }
 
-  handleChange(e) {
-    switch(e.target.name){
-      case "streetNumber":
-        this.props.rental.streetNumber = e.target.value;
-        break;
-      case "streetName":
-        this.props.rental.streetName = e.target.value;
-        break;
-      case "city":
-        this.props.rental.city = e.target.value;
-        break;
-      case "issueDate":
-        this.props.rental.issueDate = e.target.value;
-        break;
-      case "expirationDate":
-        this.props.rental.expirationDate = e.target.value;
-        break;
+  handleChange (e) {
+    switch (e.target.name) {
+      case 'streetNumber':
+        this.props.rental.streetNumber = e.target.value
+        break
+      case 'streetName':
+        this.props.rental.streetName = e.target.value
+        break
+      case 'city':
+        this.props.rental.city = e.target.value
+        break
+      case 'issueDate':
+        this.props.rental.issueDate = e.target.value
+        break
+      case 'expirationDate':
+        this.props.rental.expirationDate = e.target.value
+        break
     }
   }
 
-  render() {
-    const { rental } = this.props;
+  render () {
+    const { rental } = this.props
 
-    if (JSON.stringify(rental) == "{}"){
+    if (JSON.stringify(rental) == '{}') {
       this.props.history.push({
         pathname: '/'
       })
@@ -113,20 +112,20 @@ class RentalForm extends Component {
         <FormControl.Feedback />
         <HelpBlock>Validation is based on string length.</HelpBlock>
       </form>
-    );
+    )
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return{
-    updateRental: (rental) =>  dispatch(Action.updateRental(rental))
+  return {
+    updateRental: (rental) => dispatch(Action.updateRental(rental))
   }
-};
+}
 
 const mapStateToProps = (state) => {
-  return{
+  return {
     rental: state.rentals.selectedRental
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(RentalForm);
+export default connect(mapStateToProps, mapDispatchToProps)(RentalForm)

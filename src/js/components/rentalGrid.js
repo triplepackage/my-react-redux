@@ -10,10 +10,6 @@ class RentalGrid extends Component {
     this.props.fetchRentalsByCity(selectedCity);
   }
 
-  alignLeft = (text) => {
-    return <div style={{textAlign: "left"}}>{text}</div>
-  }
-
   onRowClick = (state, rowInfo) => {
     return {
       onClick: e => {
@@ -31,37 +27,37 @@ class RentalGrid extends Component {
     const columns = [
       {
         id: 'streetNumber',
-        Header: this.alignLeft("Street Number"),
+        Header: () => (<div style={{ textAlign:"left" }}>Street Number</div>),
         accessor: d => d.streetNumber
       },
       {
         id: 'streetName',
-        Header: this.alignLeft("Street Name"),
+        Header: () => (<div style={{ textAlign:"left" }}>Street Name</div>),
         accessor: d => d.streetName
       },
       {
         id: 'city',
-        Header: this.alignLeft("City"),
+        Header: () => (<div style={{ textAlign:"left" }}>City</div>),
         accessor: d => d.city
       },
       {
         id: 'zipCode',
-        Header: this.alignLeft("Zip Code"),
+        Header: () => (<div style={{ textAlign:"left" }}>Zip Code</div>),
         accessor: d => d.zipCode
       },
       {
         id: 'issueDate',
-        Header: this.alignLeft("Issue Date"),
+        Header: () => (<div style={{ textAlign:"left" }}>Issue Date</div>),
         accessor: d => d.issueDate
       },
       {
         id: 'expirationDate',
-        Header: () => this.alignLeft("Expiration Date"),
+        Header: () => (<div style={{ textAlign:"left" }}>Expiration Date</div>),
         accessor: d => d.expirationDate
       },
       {
         id: 'recordStatus',
-        Header: this.alignLeft("Status"),
+        Header: () => (<div style={{ textAlign:"left" }}>Status</div>),
         accessor: d => d.recordStatus
       }
     ];

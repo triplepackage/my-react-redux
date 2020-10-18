@@ -1,71 +1,71 @@
-import React, { Component } from 'react';
-import {HorizontalBar} from 'react-chartjs-2';
-import { connect } from "react-redux"
+import React, { Component } from 'react'
+import { HorizontalBar } from 'react-chartjs-2'
+import { connect } from 'react-redux'
 import * as Action from '../actions/rentals'
 
 class RentalBarChart extends Component {
-  componentDidMount() {
-    this.props.fetchRentalCountByCity();
+  componentDidMount () {
+    this.props.fetchRentalCountByCity()
   }
 
-  render() {
-    const { rentalCountByCityData } = this.props;
+  render () {
+    const { rentalCountByCityData } = this.props
 
-    let chartData = [];
-    let chartLabel = [];
+    const chartData = []
+    const chartLabel = []
 
-    rentalCountByCityData.forEach(function(rentalCount) {
-      if(rentalCount.count > 50){
-        chartData.push(parseInt(rentalCount.count));
-        chartLabel.push(rentalCount.stat);
+    rentalCountByCityData.forEach(function (rentalCount) {
+      if (rentalCount.count > 50) {
+        chartData.push(parseInt(rentalCount.count))
+        chartLabel.push(rentalCount.stat)
       }
-    });
+    })
 
     const horizontalBarData = {
       labels: chartLabel,
       datasets: [
-      {
-        label: 'Rentals Per County',
-        backgroundColor: '#36A2EB',
-        borderColor: '#36A2FB',
-        borderWidth: 1,
-        hoverBackgroundColor: '#3FA2EB',
-        hoverBorderColor: '#3FF2EB',
-        data: chartData
-      }]
+        {
+          label: 'Rentals Per County',
+          backgroundColor: '#36A2EB',
+          borderColor: '#36A2FB',
+          borderWidth: 1,
+          hoverBackgroundColor: '#3FA2EB',
+          hoverBorderColor: '#3FF2EB',
+          data: chartData
+        }]
     }
 
-    const options={
+    const options = {
       legend: {
-          display: false,
-      },
-    };
+        display: false
+      }
+    }
 
     return (
       <HorizontalBar
         data = {horizontalBarData}
         options={options}
         onElementsClick = { elems => {
-          this.props.setCurrentCity(chartLabel[elems[0]._index]);
+          this.props.setCurrentCity(chartLabel[elems[0]._index])
           this.props.history.push({ pathname: '/datagrid' })
-        }}/>);
-    }
+        }}/>)
+  }
 }
 
 const mapDispatchToProps = dispatch => {
-  return{
+  return {
     fetchRentalCountByCity: () => {
       dispatch(Action.fetchRentalCountByCity())
     },
-    setCurrentCity: (city) => dispatch(Action.setCurrentCity(city)),
-  };
-};
+    setCurrentCity: (city) => dispatch(Action.setCurrentCity(city))
+  }
+}
 
 const mapStateToProps = (state) => {
-  return{
+  return {
     rentalCountByCityData: state.rentals.rentalCountByCityData,
     selectedCity: state.rentals.selectedCity
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(RentalBarChart);
+export default connect(mapStateToProps, mapDispatchToProps)(RentalBarChart)

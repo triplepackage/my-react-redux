@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import {Doughnut} from 'react-chartjs-2';
-import { connect } from "react-redux"
+import React, { Component } from 'react'
+import { Doughnut } from 'react-chartjs-2'
+import { connect } from 'react-redux'
 import * as Action from '../actions/rentals'
 
 class RentalDoughnut extends Component {
-  componentDidMount() {
-    this.props.fetchRentalStatus();
+  componentDidMount () {
+    this.props.fetchRentalStatus()
   }
 
-  render() {
-    const { rentalStatusData } = this.props;
+  render () {
+    const { rentalStatusData } = this.props
 
-    let chartData = [];
-    let chartLabel = [];
+    const chartData = []
+    const chartLabel = []
 
-    rentalStatusData.forEach(function(rentalStatus) {
-      chartData.push(parseInt(rentalStatus.count));
-      chartLabel.push(rentalStatus.stat);
-    });
+    rentalStatusData.forEach(function (rentalStatus) {
+      chartData.push(parseInt(rentalStatus.count))
+      chartLabel.push(rentalStatus.stat)
+    })
 
     const doughnutData = {
       labels: chartLabel,
@@ -43,23 +43,23 @@ class RentalDoughnut extends Component {
     }
 
     return (
-      <Doughnut data={doughnutData}  />
-    );
+      <Doughnut data={doughnutData} />
+    )
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return{
+  return {
     fetchRentalStatus: () => {
       dispatch(Action.fetchRentalStatus())
     }
-  };
-};
+  }
+}
 
 const mapStateToProps = (state) => {
-  return{
+  return {
     rentalStatusData: state.rentals.rentalStatusData
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(RentalDoughnut);
+export default connect(mapStateToProps, mapDispatchToProps)(RentalDoughnut)
