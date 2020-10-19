@@ -11,7 +11,7 @@
   "author": "John Domingo",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.12.0",
+    "axios": "^0.20.0",
     "chart.js": "^2.8.0",
     "dotenv-webpack": "^1.7.0",
     "react": "^16.10.2",
@@ -36,6 +36,7 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.1",
